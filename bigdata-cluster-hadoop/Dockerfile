@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 #**************************************** INSTALLLING java ******************************
 RUN apt-get -y update
 RUN apt-get -y upgrade 
@@ -25,16 +25,16 @@ RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/s
 
 #**************************************** INSTALLING hadoop and configure ******************************
 RUN mkdir hadoop
-RUN wget -P /hadoop/ https://archive.apache.org/dist/hadoop/core/hadoop-2.7.7/hadoop-2.7.7.tar.gz
-RUN tar -xzvf /hadoop/hadoop-2.7.7.tar.gz -C /hadoop
-ADD ./config/core-site.xml ./hadoop/hadoop-2.7.7/etc/hadoop
-ADD ./config/hdfs-site.xml ./hadoop/hadoop-2.7.7/etc/hadoop
-ADD ./config/hadoop-env.sh ./hadoop/hadoop-2.7.7/etc/hadoop
-ADD ./config/mapred-site.xml ./hadoop/hadoop-2.7.7/etc/hadoop
-ADD ./config/yarn-site.xml ./hadoop/hadoop-2.7.7/etc/hadoop
-ENV HADOOP_HOME /hadoop/hadoop-2.7.7
+RUN wget -P /hadoop/ https://archive.apache.org/dist/hadoop/core/hadoop-2.7.2/hadoop-2.7.2.tar.gz
+RUN tar -xzvf /hadoop/hadoop-2.7.2.tar.gz -C /hadoop
+ADD ./config/core-site.xml ./hadoop/hadoop-2.7.2/etc/hadoop
+ADD ./config/hdfs-site.xml ./hadoop/hadoop-2.7.2/etc/hadoop
+ADD ./config/hadoop-env.sh ./hadoop/hadoop-2.7.2/etc/hadoop
+ADD ./config/mapred-site.xml ./hadoop/hadoop-2.7.2/etc/hadoop
+ADD ./config/yarn-site.xml ./hadoop/hadoop-2.7.2/etc/hadoop
+ENV HADOOP_HOME /hadoop/hadoop-2.7.2
 ENV PATH $PATH:$HADOOP_HOME/bin
-RUN echo "export HADOOP_HOME=/hadoop/hadoop-2.7.7" >>~/.bash_profile
+RUN echo "export HADOOP_HOME=/hadoop/hadoop-2.7.2" >>~/.bash_profile
 RUN echo "export PATH=$PATH:$HADOOP_HOME/bin" >>~/.bash_profile
 RUN $HADOOP_HOME/bin/hdfs namenode -format
 
