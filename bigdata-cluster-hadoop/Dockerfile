@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:16.04
 #**************************************** INSTALLLING java ******************************
 RUN apt-get -y update
 RUN apt-get -y upgrade 
