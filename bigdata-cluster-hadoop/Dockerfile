@@ -50,14 +50,14 @@ RUN echo "export PATH=$PATH:$SQOOP_HOME/bin" >>~/.bash_profile
 
 #**************************************** INSTALLING hive and configure ******************************
 RUN mkdir hive
-RUN wget -P /hive/ https://archive.apache.org/dist/hive/hive-1.2.1/apache-hive-1.2.1-bin.tar.gz
-RUN tar -xzvf /hive/apache-hive-1.2.1-bin.tar.gz -C /hive
-ADD ./config/hive-site.xml ./hive/apache-hive-1.2.1-bin/conf
-ADD ./config/mssql-jdbc-7.0.0.jre8.jar ./hive/apache-hive-1.2.1-bin/lib
-ADD ./config/hive-schema-1.2.0.mssql.sql ./hive/apache-hive-1.2.1-bin/scripts/metastore/upgrade/mssql/
-ENV HIVE_HOME /hive/apache-hive-1.2.1-bin
+RUN wget -P /hive/ https://archive.apache.org/dist/hive/hive-2.3.3/apache-hive-2.3.3-bin.tar.gz
+RUN tar -xzvf /hive/apache-hive-2.3.3-bin.tar.gz -C /hive
+ADD ./config/hive-site.xml ./hive/apache-hive-2.3.3-bin/conf
+ADD ./config/mssql-jdbc-7.0.0.jre8.jar ./hive/apache-hive-2.3.3-bin/lib
+ADD ./config/hive-schema-1.2.0.mssql.sql ./hive/apache-hive-2.3.3-bin/scripts/metastore/upgrade/mssql/
+ENV HIVE_HOME /hive/apache-hive-2.3.3-bin
 ENV PATH $PATH:$HIVE_HOME/bin
-RUN echo "export HIVE_HOME=/hive/apache-hive-1.2.1-bin" >>~/.bash_profile
+RUN echo "export HIVE_HOME=/hive/apache-hive-2.3.3-bin" >>~/.bash_profile
 RUN echo "export PATH=$PATH:$HIVE_HOME/bin" >>~/.bash_profile
 
 #********************************************* Moving ~/.bash_profile to /etc/profile.d/ to get env variables to all users ****************
